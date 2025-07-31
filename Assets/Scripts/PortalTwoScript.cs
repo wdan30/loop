@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.Collections;
 using UnityEngine;
 using UnityEngine.UIElements;
-public class PortalOneScript : MonoBehaviour
+public class PortalTwoScript : MonoBehaviour
 {
     [SerializeField] private BoxCollider2D meatCollider;
     [SerializeField] private LayerMask groundLayer;
@@ -25,11 +25,11 @@ public class PortalOneScript : MonoBehaviour
     {
         float horizontalInput = 0;
 
-        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))
         {
             meatBody.velocity = new Vector2(0, meatBody.velocity.y);
         } 
-        else if (Input.GetKeyDown(KeyCode.W) && IsGrounded())
+        else if (Input.GetKeyDown(KeyCode.UpArrow) && IsGrounded())
         {
             Debug.Log("Jump");
             meatBody.velocity += Vector2.up * jumpStrength;

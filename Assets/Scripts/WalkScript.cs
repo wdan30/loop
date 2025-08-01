@@ -6,9 +6,9 @@ public class WalkScript : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private BoxCollider2D playerCollider;
-    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask wallLayer;
     [SerializeField] private float speed;
-    private bool goingLeft;
+    [SerializeField] private bool goingLeft;
 
     // Start is called before the first frame update
     void Start()
@@ -19,24 +19,24 @@ public class WalkScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (checkGrounded())
+        if (CheckGrounded())
         {
-            movePlayer();
+            MovePlayer();
         }
     }
 
-    private bool checkGrounded()
+    private bool CheckGrounded()
     {
-        RaycastHit2D groundCheck = Physics2D.BoxCast(playerCollider.bounds.center, playerCollider.bounds.size, 0, Vector2.down, 0.1f, groundLayer);
+        RaycastHit2D groundCheck = Physics2D.BoxCast(playerCollider.bounds.center, playerCollider.bounds.size, 0, Vector2.down, 0.1f, wallLayer);
 
         return groundCheck.collider != null;
     }
 
-    private void movePlayer()
+    private void MovePlayer()
     {   
         if (goingLeft)
         {
-            RaycastHit2D wallCheck = Physics2D.BoxCast(playerCollider.bounds.center, playerCollider.bounds.size, 0, Vector2.left, 0.1f, groundLayer);
+            RaycastHit2D wallCheck = Physics2D.BoxCast(playerCollider.bounds.center, playerCollider.bounds.size, 0, Vector2.left, 0.1f, wallLayer);
 
             rb.velocity = speed * Vector2.left;
 
@@ -47,7 +47,7 @@ public class WalkScript : MonoBehaviour
         } 
         else
         {
-            RaycastHit2D wallCheck = Physics2D.BoxCast(playerCollider.bounds.center, playerCollider.bounds.size, 0, Vector2.right, 0.1f, groundLayer);
+            RaycastHit2D wallCheck = Physics2D.BoxCast(playerCollider.bounds.center, playerCollider.bounds.size, 0, Vector2.right, 0.1f, wallLayer);
 
             rb.velocity = speed * Vector2.right;
 

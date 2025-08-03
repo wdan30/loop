@@ -25,11 +25,11 @@ public class PortalTwoScript : MonoBehaviour
     {
         float horizontalInput = 0;
 
-        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
         {
             meatBody.velocity = new Vector2(0, meatBody.velocity.y);
         } 
-        else if (Input.GetKeyDown(KeyCode.UpArrow) && IsGrounded())
+        else if (Input.GetKeyDown(KeyCode.W) && IsGrounded())
         {
             Debug.Log("Jump");
             meatBody.velocity += Vector2.up * jumpStrength;
@@ -52,6 +52,7 @@ public class PortalTwoScript : MonoBehaviour
         {
             meatBody.velocity = new Vector2(currX * horizontalFriction, meatBody.velocity.y);
         }
+
     }
 
     private bool IsGrounded()

@@ -64,13 +64,20 @@ public class PortalOneScript : MonoBehaviour
 
     private bool IsTouchingWallRight()
     {
-        RaycastHit2D groundCheck = Physics2D.BoxCast(portalCollider.bounds.center, portalCollider.bounds.size, 0, Vector2.right, 0.1f, wallLayer);
+        RaycastHit2D groundCheck = Physics2D.BoxCast(portalCollider.bounds.center, portalCollider.bounds.size, 0, Vector2.right, 0.1f, groundLayer);
+        if ( groundCheck.collider != null ) {
+            Debug.Log("touching right");
+        }
+        
         return groundCheck.collider != null;
     }
 
     private bool IsTouchingWallLeft()
     {
-        RaycastHit2D groundCheck = Physics2D.BoxCast(portalCollider.bounds.center, portalCollider.bounds.size, 0, Vector2.left, 0.1f, wallLayer);
+        RaycastHit2D groundCheck = Physics2D.BoxCast(portalCollider.bounds.center, portalCollider.bounds.size, 0, Vector2.left, 0.1f, groundLayer);
+        if ( groundCheck.collider != null ) {
+            Debug.Log("touching left");
+        }
         return groundCheck.collider != null;
     }
 }
